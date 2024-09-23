@@ -1,0 +1,349 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo i {
+    font-size: 48px;
+    color: #1DB954;
+}
+
+.logo h1 {
+    font-size: 36px;
+    margin-top: 10px;
+    color: #333;
+}
+
+section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    position: relative;
+}
+
+.register-type-buttons button{
+    margin: 10px 0;
+}
+
+.back-button{
+    max-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+.back-button:hover{
+    color: #1DB954;
+    background: none;
+}
+
+.top-form{
+    display: flex;
+    margin-top: 0;
+}
+
+.top-form h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #1DB954;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1DB954;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1ED760;
+}
+
+.switch-form,
+.forgot-password {
+    text-align: center;
+    margin-top: 20px;
+}
+
+a {
+    color: #1DB954;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #1ED760;
+}
+
+
+
+.custom-select {
+    position: relative;
+}
+
+.custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 30px;
+}
+
+.custom-select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input[type="file"] + label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1DB954;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="file"] + label:hover {
+    background-color: #1ED760;
+}
+
+.image-preview {
+    max-height: 100px;
+    border-radius: 4px;
+    object-fit: contain;
+    display: flex;
+}
+
+.div-profile-image-input, .div-header-image-input{
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    h2{
+        font-size: 21px;
+    }
+}
+
+.file-input-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1DB954;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.file-input-label:hover {
+    background-color: #1ED760;
+    transform: translateY(-2px);
+}
+
+.file-input-label input[type="file"] {
+    display: none;
+}
+
+.file-input-text {
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.file-input-label.file-selected .file-input-text {
+    color: #4CAF50;
+}
+
+.multiselect {
+    width: 300px;
+    position: relative;
+}
+
+.multiselect-toggle {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.multiselect-toggle::after {
+    content: '\25BC';
+    font-size: 0.8em;
+}
+
+.multiselect-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+.multiselect-option {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.multiselect-option:hover {
+    background-color: #f0f0f0;
+}
+
+.multiselect-option input {
+    margin-right: 10px;
+}
+
+.multiselect.open .multiselect-dropdown {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+    .multiselect {
+        width: 100%;
+    }
+}
