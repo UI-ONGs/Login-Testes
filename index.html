@@ -19,9 +19,11 @@
                 <form id="login-form">
                     <div class="form-group">
                         <input type="email" id="login-email" placeholder="E-mail" required>
+                        <span class="error-message" id="login-email-error"></span>
                     </div>
                     <div class="form-group">
                         <input type="password" id="login-password" placeholder="Senha" required>
+                        <span class="error-message" id="login-password-error"></span>
                     </div>
                     <div class="form-group checkbox">
                         <input type="checkbox" id="stay-signed-in">
@@ -52,22 +54,33 @@
                     <div class="form-row">
                         <div class="form-group">
                             <input type="text" id="volunteer-name" placeholder="Nome" required>
+                            <span class="error-message" id="volunteer-name-error"></span>
                         </div>
                         <div class="form-group">
                             <input type="text" id="volunteer-surname" placeholder="Sobrenome" required>
+                            <span class="error-message" id="volunteer-surname-error"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="text" id="volunteer-username" placeholder="Nome de usuário" required>
+                        <span class="error-message" id="volunteer-username-error"></span>
                     </div>
                     <div class="form-group">
                         <input type="email" id="volunteer-email" placeholder="E-mail" required>
+                        <span class="error-message" id="volunteer-email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="volunteer-dob" required>
+                        <label for="volunteer-dob" class="date-label">Data de Nascimento</label>
+                        <span class="error-message" id="volunteer-dob-error"></span>
                     </div>
                     <div class="form-group">
                         <input type="password" id="volunteer-password" placeholder="Senha" required>
+                        <span class="error-message" id="volunteer-password-error"></span>
                     </div>
                     <div class="form-group">
                         <input type="password" id="volunteer-confirm-password" placeholder="Confirmar Senha" required>
+                        <span class="error-message" id="volunteer-confirm-password-error"></span>
                     </div>
                     <button type="submit">Próximo</button>
                 </form>
@@ -104,6 +117,7 @@
                 <form id="institution-register-form-1">
                     <div class="form-group">
                         <input type="text" id="institution-name" placeholder="Nome da Instituição" required>
+                        <span class="error-message" id="institution-name-error"></span>
                     </div>
                     <div class="form-group">
                         <div class="multiselect" id="multiselect-category">
@@ -126,26 +140,33 @@
                                 </label>
                             </div>
                         </div>
+                        <span class="error-message" id="institution-category-error"></span>
                     </div>                    
                     <div class="form-row">
                         <div class="form-group">
                             <input type="text" id="institution-owner" placeholder="Nome do Proprietário" required>
+                            <span class="error-message" id="institution-owner-error"></span>
                         </div>
                         <div class="form-group">
                             <input type="text" id="institution-cnpj" placeholder="CNPJ" required>
+                            <span class="error-message" id="institution-cnpj-error"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="text" id="institution-location" placeholder="Localização" required>
+                        <span class="error-message" id="institution-location-error"></span>
                     </div>
                     <div class="form-group">
                         <input type="email" id="institution-email" placeholder="E-mail" required>
+                        <span class="error-message" id="institution-email-error"></span>
                     </div>
                     <div class="form-group">
                         <input type="password" id="institution-password" placeholder="Senha" required>
+                        <span class="error-message" id="institution-password-error"></span>
                     </div>
                     <div class="form-group">
                         <input type="password" id="institution-confirm-password" placeholder="Confirmar Senha" required>
+                        <span class="error-message" id="institution-confirm-password-error"></span>
                     </div>
                     <button type="submit">Próximo</button>
                 </form>
@@ -176,13 +197,16 @@
                                 </label>
                             </div>
                         </div>
+                        <span class="error-message" id="institution-donation-error"></span>
                     </div>
 
                     <div class="form-group">
                         <textarea id="institution-mission" rows="4" placeholder="Missão da Instituição" required></textarea>
+                        <span class="error-message" id="institution-mission-error"></span>
                     </div>
                     <div class="form-group">
                         <textarea id="institution-needs" rows="4" placeholder="Principais Necessidades" required></textarea>
+                        <span class="error-message" id="institution-needs-error"></span>
                     </div>
                     <div class="form-group">
                         <label>Áreas de Atuação</label>
@@ -196,6 +220,7 @@
                             <input type="checkbox" id="area-internacional" name="areas" value="internacional">
                             <label for="area-internacional">Internacional</label>
                         </div>
+                        <span class="error-message" id="institution-areas-error"></span>
                     </div>
                     <button type="submit">Próximo</button>
                 </form>
