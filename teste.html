@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário com Múltiplas Textareas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+        .textarea-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            resize: vertical;
+            font-size: 16px;
+            line-height: 1.6;
+            transition: border-color 0.3s ease;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        .char-counter {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 14px;
+            color: #666;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 10px;
+            font-weight: bold;
+            display: none;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="mainForm">
+            <div class="textarea-container">
+                <textarea id="textarea1" placeholder="Principais Necessidades"></textarea>
+                <div class="char-counter"><span id="charCount1"></span></div>
+            </div>
+            <div class="error-message" id="errorMessage1"></div>
+
+            <div class="textarea-container">
+                <textarea id="textarea2" placeholder="Descrição Detalhada"></textarea>
+                <div class="char-counter"><span id="charCount2"></span></div>
+            </div>
+            <div class="error-message" id="errorMessage2"></div>
+
+            <div class="textarea-container">
+                <textarea id="textarea3" placeholder="Comentários Adicionais"></textarea>
+                <div class="char-counter"><span id="charCount3"></span></div>
+            </div>
+            <div class="error-message" id="errorMessage3"></div>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        function setupTextarea(textareaId, minChars, maxChars) {
+            const textarea = document.getElementById(textareaId);
+            const charCount = document.getElementById(`charCount${textareaId.slice(-1)}`);
+            const errorMessage = document.getElementById(`errorMessage${textareaId.slice(-1)}`);
+
+            textarea.setAttribute('maxlength', maxChars);
+
+            function updateCharCount() {
+                const length = textarea.value.length;
+                charCount.textContent = `${length}/${maxChars}`;
+            }
+
+            textarea.addEventListener('input', updateCharCount);
+
+            return function validateTextarea() {
+                const length = textarea.value.length;
+                if (length < minChars) {
+                    errorMessage.textContent = `Caracteres mínimos: ${minChars}`;
+                    errorMessage.style.display = 'block';
+                    return false;
+                } else {
+                    errorMessage.style.display = 'none';
+                    return true;
+                }
+            };
+        }
+
+        const validateTextarea1 = setupTextarea('textarea1', 500, 4500);
+        const validateTextarea2 = setupTextarea('textarea2', 200, 2000);
+        const validateTextarea3 = setupTextarea('textarea3', 50, 1000);
+
+        document.getElementById('mainForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const isValid1 = validateTextarea1();
+            const isValid2 = validateTextarea2();
+            const isValid3 = validateTextarea3();
+
+            if (isValid1 && isValid2 && isValid3) {
+                alert('Formulário enviado com sucesso!');
+                // Aqui você pode adicionar o código para enviar o formulário para o servidor
+            }
+        });
+    </script>
+</body>
+</html>

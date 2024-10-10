@@ -103,7 +103,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <textarea id="volunteer-description" rows="4" placeholder="Descrição"></textarea>
+                        <div class="textarea-container">
+                            <textarea id="volunteer-description" rows="4" placeholder="Descrição"></textarea>
+                            <div class="char-counter">
+                                <span id="charCount1"></span>
+                            </div>
+                        </div>
+                        
                     </div>
                     <button type="submit">Finalizar Cadastro</button>
                 </form>
@@ -178,7 +184,7 @@
                 <form id="institution-register-form-2">
                     <div class="form-group">
                         <div class="multiselect" id="multiselect-donation">
-                            <div class="multiselect-toggle" >Selecione as categorias</div>
+                            <div class="multiselect-toggle" >Selecione tipos de doação</div>
                             <div class="multiselect-dropdown">
                                 <label class="multiselect-option">
                                     <input type="checkbox" value="dinheiro">Dinheiro
@@ -201,11 +207,23 @@
                     </div>
 
                     <div class="form-group">
-                        <textarea id="institution-mission" rows="4" placeholder="Missão da Instituição" required></textarea>
+                        <div class="textarea-container">
+                            <textarea id="institution-mission" rows="4" placeholder="Missão da Instituição" required></textarea>
+                            <div class="char-counter">
+                                <span id="charCount2"></span>
+                            </div>
+                        </div>
+                        
                         <span class="error-message" id="institution-mission-error"></span>
                     </div>
                     <div class="form-group">
-                        <textarea id="institution-needs" rows="4" placeholder="Principais Necessidades" required></textarea>
+                        <div class="textarea-container">
+                            <textarea id="institution-needs" rows="4" placeholder="Principais Necessidades" required></textarea>
+                            <div class="char-counter">
+                                <span id="charCount3"></span>
+                            </div>
+                        </div>
+                        
                         <span class="error-message" id="institution-needs-error"></span>
                     </div>
                     <div class="form-group">
@@ -241,7 +259,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <textarea id="institution-description" rows="4" placeholder="Descrição"></textarea>
+                        <div class="textarea-container">
+                            <textarea id="institution-description" rows="4" placeholder="Descrição"></textarea>
+                            <div class="char-counter">
+                                <span id="charCount4"></span>
+                                
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="form-group">
                         <input type="url" id="institution-website" placeholder="Website">
