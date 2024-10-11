@@ -47,6 +47,8 @@ section {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: none;
     position: relative;
+    width: 80vw;
+    max-width: 450px;
 }
 
 .register-type-buttons button{
@@ -86,6 +88,8 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 300px;
+    width: 100%;
 }
 
 section.active {
@@ -169,6 +173,7 @@ select:focus {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    max-width: 300px;
 }
 
 .checkbox-group input[type="checkbox"] {
@@ -239,18 +244,18 @@ input[type="file"] {
     display: none;
 }
 
-input[type="file"] + label {
+.pic-label {
     display: inline-block;
-    padding: 10px 20px;
-    background-color: #1DB954;
-    color: #fff;
+    padding: 10px 0px;
+    color: #1DB954;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 100%;
 }
 
-input[type="file"] + label:hover {
-    background-color: #1ED760;
+.pic-label:hover{
+    color: #1ED760;
 }
 
 .image-preview {
@@ -274,6 +279,11 @@ input[type="file"] + label:hover {
 .div-images-input{
     display: flex;
     flex-direction: column;
+    gap: 0;
+}
+
+.div-images-input .form-group{
+    margin: 0;
 }
 
 .date-label {

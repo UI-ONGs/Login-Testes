@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Verifica se há um usuário logado ao carregar a página
     checkLoggedInUser();
 
+    // Setup textareas
+    setupTextarea('volunteer-description', 100, 500);
+    setupTextarea('institution-mission', 200, 1000);
+    setupTextarea('institution-needs', 150, 800);
+    setupTextarea('institution-description', 300, 2000);
+
     document.getElementById('show-register').addEventListener('click', () => {
         loginSection.classList.remove('active');
         registerTypeSection.classList.add('active');
@@ -61,11 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (user) {
             if (staySignedIn) {
-                // Armazena as informações de login de forma mais persistente
                 localStorage.setItem('loggedInUser', JSON.stringify(user));
                 localStorage.setItem('staySignedIn', 'true');
             } else {
-                // Armazena as informações de login na sessão
                 sessionStorage.setItem('loggedInUser', JSON.stringify(user));
             }
             showMessage('login-email', 'Login bem-sucedido!', false);
@@ -133,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Armazena os dados temporariamente
         tempFormData = {
             type: 'volunteer',
             name,
@@ -154,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isSubmitting) return;
         isSubmitting = true;
 
-        // Converte imagens para base64
         const profilePicFile = document.getElementById('volunteer-profile-pic').files[0];
         const headerImageFile = document.getElementById('volunteer-header').files[0];
 
@@ -167,7 +169,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tempFormData.description = document.getElementById('volunteer-description').value;
 
-        // Salva os dados do voluntário
+        if (!validateTextareaLength('volunteer-description', 100, 500)) {
+            showMessage('volunteer-description', 'A descrição deve ter entre 100 e 500 caracteres.', true);
+            isSubmitting = false;
+            return;
+        }
+
         users.push(tempFormData);
         saveUsers();
 
@@ -247,7 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Armazena os dados temporariamente
         tempFormData = {
             type: 'institution',
             name,
@@ -288,6 +294,18 @@ document.addEventListener('DOMContentLoaded', () => {
         tempFormData.needs = document.getElementById('institution-needs').value;
         tempFormData.areas = Array.from(document.querySelectorAll('input[name="areas"]:checked')).map(checkbox => checkbox.value);
 
+        if (!validateTextareaLength('institution-mission', 200, 1000)) {
+            showMessage('institution-mission', 'A missão deve ter entre 200 e 1000 caracteres.', true);
+            isSubmitting = false;
+            return;
+        }
+
+        if (!validateTextareaLength('institution-needs', 150, 800)) {
+            showMessage('institution-needs', 'As necessidades devem ter entre 150 e 800 caracteres.', true);
+            isSubmitting = false;
+            return;
+        }
+
         institutionRegisterSection2.classList.remove('active');
         institutionRegisterSection3.classList.add('active');
         isSubmitting = false;
@@ -298,7 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isSubmitting) return;
         isSubmitting = true;
 
-        // Converte imagens para base64
         const profilePicFile = document.getElementById('institution-profile-pic').files[0];
         const headerImageFile = document.getElementById('institution-header').files[0];
 
@@ -313,7 +330,12 @@ document.addEventListener('DOMContentLoaded', () => {
         tempFormData.website = document.getElementById('institution-website').value;
         tempFormData.socialMedia = document.getElementById('institution-social-media').value;
 
-        // Salva os dados da instituição
+        if (!validateTextareaLength('institution-description', 300, 2000)) {
+            showMessage('institution-description', 'A descrição deve ter entre 300 e 2000 caracteres.', true);
+            isSubmitting = false;
+            return;
+        }
+
         users.push(tempFormData);
         saveUsers();
 
@@ -323,7 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500);
     });
 
-    // Funcionalidade de pré-visualização de imagem
     document.querySelectorAll('input[type="file"]').forEach(input => {
         input.addEventListener('change', event => {
             const file = event.target.files[0];
@@ -344,13 +365,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    function convertToBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-            reader.readAsDataURL(file);
-        });
+    function setupTextarea(textareaId, minChars, maxChars) {
+        const textarea = document.getElementById(textareaId);
+        if (!textarea) {
+            console.warn(`Textarea with id "${textareaId}" not found.`);
+            return;
+        }
+    
+        const charCountId = `charCount-${textareaId}`;
+        let charCount = document.getElementById(charCountId);
+    
+        if (!charCount) {
+            charCount = document.createElement('span');
+            charCount.id = charCountId;
+            charCount.className = 'char-counter';
+            textarea.parentNode.insertBefore(charCount, textarea.nextSibling);
+        }
+    
+        textarea.setAttribute('minlength', minChars);
+        textarea.setAttribute('maxlength', maxChars);
+    
+        function updateCharCount() {
+            const length = textarea.value.length;
+            charCount.textContent = `${length}/${maxChars}`;
+        }
+    
+        textarea.addEventListener('input', updateCharCount);
+        updateCharCount(); // Initial count
+    }
+
+    function validateTextareaLength(textareaId, minChars, maxChars) {
+        const textarea = document.getElementById(textareaId);
+        if (!textarea) {
+            console.warn(`Textarea with id "${textareaId}" not found.`);
+            return false;
+        }
+        const length = textarea.value.length;
+        return length >= minChars && length <= maxChars;
     }
 
     function validateEmail(email) {
@@ -359,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function validatePassword(password, confirmPassword) {
-        return password.length >= 8 && password === confirmPassword;
+        return  password.length >= 8 && password === confirmPassword;
     }
 
     function validateUsername(username) {
@@ -395,7 +446,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkLoggedInUser() {
         const loggedInUser = localStorage.getItem('loggedInUser') || sessionStorage.getItem('loggedInUser');
         if (loggedInUser) {
-            // Usuário está logado, redireciona para a página de perfil
             window.location.href = 'profile.html';
         }
     }
@@ -405,10 +455,9 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('users', JSON.stringify(users));
         } catch (error) {
             console.error('Error saving users to localStorage:', error);
-            // Se o localStorage estiver cheio, remova o usuário mais antigo
             if (error instanceof DOMException && error.name === 'QuotaExceededError') {
-                users.shift(); // Remove o usuário mais Antigo
-                saveUsers(); // Tenta salvar de novo
+                users.shift();
+                saveUsers();
             }
         }
     }
